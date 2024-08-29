@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <style>
+        body {
+            background-color: rgb(248, 248, 248);
+            width: 100dvw;
+            max-width: 768px;
+            margin: 0 auto;
+        }
+        .searchBar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding-inline: 15px;
+            padding-block: 10px;
+            margin-top: 10px;
+        }
+        form {
+            flex: 1;
+        }
+        form input {
+            outline: none;
+            color: #8a6240;
+            height: 20px;
+            background-color: #e0d4be;
+            border: none;
+            border-radius: 10px;
+            height: 40px;
+            width: 100%;
+            padding-left: 35px;
+        }
+        ::placeholder {
+            color: #8a6240;
+        }
+        .searchIcon {
+            color: #8a6240;
+            position: absolute;
+            padding: 12px;
+        }
+        .optionIcon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: #4d2d18;
+            color: white;
+            border-radius: 10px;
+            margin-left: 40px;
+        }
+
+        .likeIconDiv {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.123);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .likeIconDiv i {
+            margin-top: 1px;
+        }
+
+
+
+        /* page 2 */
+        .viewProduct {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+        .backAndShare {
+            background-color: rgb(238, 238, 238);
+            display: flex;
+            justify-content: space-between;
+            padding-inline: 18px;
+            padding-block: 10px;
+        }
+        .selectedProductImg {
+            position: relative;
+        }
+        .selectedProductImg img {
+            width: 100%;
+        }
+
+        .colour {
+            display: flex;
+            justify-content: space-between;
+        }
+        .colourText, .colourNum {
+            margin: 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        .colourNum {
+            font-weight: lighter;
+            margin-right: 15px;
+        }
+        .variants {
+            display: flex;
+            gap: 5px;
+            padding: 10px;
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+            overflow-y: hidden;
+        }
+        ::-webkit-scrollbar{
+            display: none;
+        }
+        .variantsElements {
+            border: 1px solid #9e9d9b;
+            
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.123)
+        }
+        .variantsElementsSelected {
+            border: 1px solid #ff9900;
+        }
+        .variantsElements div {
+            overflow: hidden;
+            border-radius: 5px 5px 0 0;
+        }
+        .variantsElements div img {
+            width: 70px;
+            height: 90px;
+            object-fit: contain;
+        }
+        .variantsElements p {
+            text-align: center;
+            margin: 3px;
+            font-size: 0.6rem;
+        }
+        .productInfo {
+            margin-bottom: 80px;
+        }
+        .selectedDetails, .selectedName, .SelectedPriceTag {
+            margin: 10px;
+            font-size: 0.9rem;
+        }
+        .SelectedPriceTag {
+            color: #4d2d18;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        .selectedDetails {
+            text-align: justify;
+        }
+
+        .cartAndBuy {
+            position: fixed;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 10px;
+            bottom: 20px;
+            left: 30px;
+            right: 30px;
+        }
+        .addToCart, .buyNow {
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.295)
+        }
+        .addToCart {
+            background-color: rgb(216, 216, 216);
+        }
+        .buyNow {
+            background-color: #ff9900;
+        }
+    </style>
+</head>
+<body>
+    <div class="searchBar">
+        <form action="">
+            <i class="searchIcon fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search Product">
+        </form>
+        <div class="optionIcon">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+        </div>
+    </div>
+
+    <div class="viewProduct">
+
+        <div class="backAndShare">
+            <i onclick="window.history.back();" class="fa-solid fa-arrow-left"></i>
+            <i class="fa-solid fa-share-nodes"></i>
+        </div>
+
+        <div class="selectedProductImg" id="selectedProductImg">
+            
+        </div>
+
+        <div class="colour" id="colour">
+            <p>Colour</p>
+        </div>
+
+        <div class="variants" id="variants">
+            
+        </div>
+
+        <div class="productInfo" id="productInfo">
+            
+        </div>
+
+    </div>
+
+    <div class="cartAndBuy">
+        <button class="addToCart">
+            Add to cart
+        </button>
+        <button class="buyNow">
+            Buy now
+        </button>
+    </div>
+</body>
+
+<script>
+    
+    const localStore = JSON.parse(localStorage.getItem('current'));
+    const selected = parseInt(localStorage.getItem('selected'));
+    checkProduct();
+    selection(selected);
+    function selection(i) {
+        let selectedProductImg = document.getElementById('selectedProductImg');
+        selectedProductImg.innerHTML = `
+            <div class="likeIconDiv">
+                <i class="${localStore.varient[i].icon}"></i>
+            </div>
+            <img src="image/${localStore.varient[i].src}" alt="">
+        `;
+        let colour = document.getElementById('colour');
+        colour.innerHTML =`
+            <p class="colourText">Colour: ${localStore.varient[i].colour}</p>
+            <p class="colourNum">${i+1}/${localStore.varient.length}</p>
+        `;
+        let productInfo = document.getElementById('productInfo');
+        productInfo.innerHTML = `
+            <p class="selectedName">${localStore.name}</p>
+            <p class="SelectedPriceTag">₹${localStore.price}/-</p>
+            <p class="selectedDetails">${localStore.description}</p>
+        `;
+
+        for (let x=0; x < localStore.varient.length; x++) {
+            document.querySelector(`.active${x}`).classList.remove("variantsElementsSelected");
+        }
+        document.querySelector(`.active${i}`).classList.add("variantsElementsSelected");
+    }
+
+    
+    function checkProduct() {
+        let variants = document.getElementById('variants');
+        for (let i = 0; i < localStore.varient.length; i++) {
+            variantsElements = `
+                <div class="variantsElements active${i}" onclick="selection(${i})">
+                    <div>
+                        <img src="image/${localStore.varient[i].src}" alt="">
+                    </div>
+                    <p>${localStore.varient[i].colour}</p>
+                </div>
+            `;
+            variants.innerHTML += variantsElements;
+        }
+    }
+</script>
+</html>
