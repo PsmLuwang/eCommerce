@@ -177,10 +177,10 @@
         </div>
     </div>
     <nav class="navScrollX">
-        <button>All</button>
+        <button onclick="listProduct('all');">All</button>
         <button>Traditional</button>
-        <button>Shirts</button>
-        <button>Pants</button>
+        <button onclick="listProduct('shirt');">Shirts</button>
+        <button onclick="listProduct('pant');">Pants</button>
         <button>Shoes</button>
         <button>Glass</button>
         <button>Watches</button>
@@ -408,36 +408,176 @@
                 },
             ]
         },
+
+        {
+            id : 12352,
+            catagory : 'pant',
+            name : 'Jeans',
+            price : '899',
+            description : 'Good quality',
+            varient : [
+                {
+                    display : 'show',
+                    src : 'p1.jpeg',
+                    colour : 'Light Gray',
+                    icon : 'fa-regular fa-heart',
+                },
+            ]
+        },
+        {
+            id : 12353,
+            catagory : 'pant',
+            name : 'Men Tapered Fit',
+            price : '699',
+            description : 'Good attractive pant',
+            varient : [
+                {
+                    display : 'hide',
+                    src : 'q1.jpeg',
+                    colour : 'Blue',
+                    icon : 'fa-regular fa-heart',
+                },
+                {
+                    display : 'show',
+                    src : 'q2.jpeg',
+                    colour : 'Purple',
+                    icon : 'fa-regular fa-heart',
+                },
+                {
+                    display : 'show',
+                    src : 'q3.jpeg',
+                    colour : 'Light Blue',
+                    icon : 'fa-regular fa-heart',
+                },
+            ]
+        },
+        {
+            id : 12354,
+            catagory : 'pant',
+            name : 'Cargo Pant',
+            price : '800',
+            description : 'New trending',
+            varient : [
+                {
+                    display : 'show',
+                    src : 'r1.jpeg',
+                    colour : 'Dark Black',
+                    icon : 'fa-regular fa-heart',
+                },
+            ]
+        },
+        {
+            id : 12355,
+            catagory : 'pant',
+            name : 'Large Jeans',
+            price : '900',
+            description : 'Young styling dress',
+            varient : [
+                {
+                    display : 'hide',
+                    src : 's1.jpeg',
+                    colour : 'Sky Blue',
+                    icon : 'fa-regular fa-heart',
+                },
+                {
+                    display : 'show',
+                    src : 's2.jpeg',
+                    colour : 'Dark Blue',
+                    icon : 'fa-regular fa-heart',
+                },
+                {
+                    display : 'hide',
+                    src : 's3.jpeg',
+                    colour : 'Black',
+                    icon : 'fa-regular fa-heart',
+                },
+            ]
+        },
+        {
+            id : 12355,
+            catagory : 'pant',
+            name : 'Korean style jeans',
+            price : '1200',
+            description : 'Good quality products',
+            varient : [
+                {
+                    display : 'show',
+                    src : 't1.jpeg',
+                    colour : 'Light Gray',
+                    icon : 'fa-regular fa-heart',
+                },
+                {
+                    display : 'hide',
+                    src : 't2.jpeg',
+                    colour : 'Blue',
+                    icon : 'fa-regular fa-heart',
+                },
+                {
+                    display : 'show',
+                    src : 't3.jpeg',
+                    colour : 'Black',
+                    icon : 'fa-regular fa-heart',
+                },
+            ]
+        },
     ];
 
-    listProduct();
-    function listProduct() {
+    listProduct('all');
+    function listProduct(catagory) {
         let productContainer = document.getElementById('productContainer');
+        productContainer.innerHTML = '';
 
         for (let x=0; x<products.length; x++) {
-            let varient = products[x].varient;
+            if (products[x].catagory == catagory) {
+                let varient = products[x].varient;
+                for (let i=0; i<varient.length; i++) {
+                    let row = `
+                        <div class="product">
+                            <div class="likeIconDiv">
+                                <i class="${varient[i].icon}"></i>
+                            </div>
+                            <div class="productImgContainer">
+                                <img src="image/${varient[i].src}" alt="">
+                            </div>
+                            <div onclick="localStore(${x}, ${i})">
+                                <p class="details">${products[x].name}</p>
+                                <p class="priceTag">₹${products[x].price}/-</p>
+                            </div>
+                        </div>
+                    `;
 
-            for (let i=0; i<varient.length; i++) {
-                let row = `
-                    <div class="product">
-                        <div class="likeIconDiv">
-                            <i class="${varient[i].icon}"></i>
-                        </div>
-                        <div class="productImgContainer">
-                            <img src="image/${varient[i].src}" alt="">
-                        </div>
-                        <div onclick="localStore(${x}, ${i})">
-                            <p class="details">${products[x].name}</p>
-                            <p class="priceTag">₹${products[x].price}/-</p>
-                        </div>
-                    </div>
-                `;
-
-                if (varient[i].display == 'show') {
-                    productContainer.innerHTML += row;
-                };
-            }; 
+                    if (varient[i].display == 'show') {
+                        productContainer.innerHTML += row;
+                    };
+                }; 
+            }
         }
+        if (catagory == 'all') {
+            for (let x=0; x<products.length; x++) {
+                let varient = products[x].varient;
+                for (let i=0; i<varient.length; i++) {
+                    let row = `
+                        <div class="product">
+                            <div class="likeIconDiv">
+                                <i class="${varient[i].icon}"></i>
+                            </div>
+                            <div class="productImgContainer">
+                                <img src="image/${varient[i].src}" alt="">
+                            </div>
+                            <div onclick="localStore(${x}, ${i})">
+                                <p class="details">${products[x].name}</p>
+                                <p class="priceTag">₹${products[x].price}/-</p>
+                            </div>
+                        </div>
+                    `;
+
+                    if (varient[i].display == 'show') {
+                        productContainer.innerHTML += row;
+                    };
+                }; 
+            }
+        }
+        
     }
 
     function localStore(x, i) {
