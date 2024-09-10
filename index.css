@@ -225,7 +225,7 @@ aside > footer {
 }
 aside > footer > a {
     color: black;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
     font-size: 0.8rem;
 }
 aside > footer > button {
