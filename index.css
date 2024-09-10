@@ -210,7 +210,6 @@ aside > nav > div > p {
     color: black;
     margin: 0;
     margin-left: 10px;
-    margin-top: 1px;
 }
 aside > footer {
     position: absolute;
@@ -226,6 +225,7 @@ aside > footer {
 }
 aside > footer > a {
     color: black;
+    margin-bottom: 2px;
     font-size: 0.8rem;
 }
 aside > footer > button {
