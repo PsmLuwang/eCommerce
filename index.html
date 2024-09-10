@@ -5,160 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
-    <style>
-        body {
-            background-color: rgb(248, 248, 248);
-            width: 100dvw;
-            max-width: 480px;
-            margin: 0 auto;
-        }
-        .searchBar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            padding-inline: 15px;
-            padding-block: 10px;
-            margin-top: 10px;
-        }
-        form {
-            flex: 1;
-        }
-        form input {
-            outline: none;
-            color: #8a6240;
-            height: 20px;
-            background-color: #e0d4be;
-            border: none;
-            border-radius: 10px;
-            height: 40px;
-            width: 100%;
-            padding-left: 35px;
-        }
-        ::placeholder {
-            color: #8a6240;
-        }
-        .searchIcon {
-            color: #8a6240;
-            position: absolute;
-            padding: 12px;
-        }
-        .optionIcon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 40px;
-            height: 40px;
-            background-color: #4d2d18;
-            color: white;
-            border-radius: 10px;
-            margin-left: 40px;
-        }
-
-
-        /* Auto sroll ads */
-        .autoScrollImg {
-            width: 100%;
-            height: 230px;
-        }
-        .imgContainer {
-            height: 200px;
-            padding: 15px;
-        }
-        .imgContainer img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
-            box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.123);
-        }
-
-        /* navigation for catagories */
-        .navScrollX {
-            margin: 10px;
-            display: flex;
-            gap: 5px;
-            flex-wrap: nowrap;
-            overflow-x: scroll;
-            overflow-y: hidden;
-        }
-        .navScrollX button {
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            background-color: #e0d4be;
-            color: #8a6240;
-        }
-        ::-webkit-scrollbar{
-            display: none;
-        }
-        .navScrollX button:focus {
-            background-color: #4d2d18;
-            color: white;
-        }
-
-        /* list of products */
-        .productContainer {
-            margin: 10px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-        .product {
-            position: relative;
-            min-height: 18.8rem;
-            background-color: #4d2d18;
-            width: 100%;
-            border-radius: 5px;
-            box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.123);
-        }
-        .productImgContainer {
-            overflow: hidden;
-            border-radius: 4px 4px 0 0;
-            background-color: white;
-            height: 15rem;
-            display: flex;
-            justify-content: center;
-        }
-        .productImgContainer img {
-            object-fit: cover; /* or cover; */
-            height: 100%;
-            width: 100%;
-        }
-        .productImgContainer img:hover {
-            transition: scale 0.5s;
-            scale: 105%;
-        }
-        .details, .priceTag {
-            color: rgb(238, 231, 231);
-            font-size: 0.8rem;
-            padding-inline: 10px;
-            margin: 0;
-            margin-top: 3px;
-        }
-        .priceTag {
-            color: white;
-            font-size: 1rem;
-            padding-bottom: 5px;
-        }
-        .likeIconDiv {
-            z-index: 1;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: white;
-            height: 25px;
-            width: 25px;
-            border-radius: 50%;
-            box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.123);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .likeIconDiv i {
-            margin-top: 1px;
-        }
-    </style>
+    <script src="array.js"></script>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <div class="searchBar">
@@ -166,7 +14,7 @@
             <i class="searchIcon fa-solid fa-magnifying-glass"></i>
             <input type="text" placeholder="Search Product">
         </form>
-        <div class="optionIcon">
+        <div onclick="clickme('on')" class="optionIcon">
             <i class="fa-solid fa-ellipsis-vertical"></i>
         </div>
     </div>
@@ -176,31 +24,63 @@
             
         </div>
     </div>
-    <nav class="navScrollX">
-        <button onclick="listProduct('all');">All</button>
-        <button>Traditional</button>
-        <button onclick="listProduct('shirt');">Shirts</button>
-        <button onclick="listProduct('pant');">Pants</button>
-        <button>Shoes</button>
-        <button>Glass</button>
-        <button>Watches</button>
-        <button>Sports</button>
+    <nav class="navScrollX" id="navScrollX">
+        
     </nav>
 
     <div class="productContainer" id="productContainer">
         
     </div>
-    <div id="display"></div>
+
+    <aside id="aside">
+        <header>
+            <i onclick="clickme('off')" class="fa-solid fa-angles-right"></i>
+
+            <div class="profileContainer">
+                <img src="image/a1.jpg" alt="">
+            </div>
+            <p>MR. TONY STARK</p>
+            <h5>ID: 0123456789</h5>
+        </header>
+
+        <nav>
+            <div>
+                <i class="fa-solid fa-user"></i>
+                <p>Account settings</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-heart"></i>
+                <p>Saved</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-cart-shopping"></i>
+                <p>My cart</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <p>Purchased history</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-headset"></i>
+                <p>Support chat</p>
+            </div>
+        </nav>
+
+
+        <footer>
+            <a href="#">Refund policy</a>
+            <a href="#">Copyright</a>
+            <a href="#">Tearms & conditions</a>
+
+            <button>Log out</button>
+        </footer>
+    </aside>
+    
 </body>
 
 <script>
-    let autoScrollImgList = [
-        'banner/img1.png',
-        'banner/img2.jpg',
-        'banner/img3.jpg',
-        'banner/img4.png',
-        'banner/img5.jpg',
-    ]
+
+    // auto slide banner
     let i = 0;
     let imgContainer = document.getElementById('imgContainer');
     imgContainer.innerHTML =`
@@ -211,331 +91,29 @@
         imgContainer.innerHTML = `<img src="${autoScrollImgList[i]}" alt="">`;
     }, 3000);
 
+   // nav for catagory
+    let navScrollX = document.getElementById('navScrollX');
+    for (let i=0; i<catagory.length; i++) {
+        navScrollX.innerHTML += `
+            <button class="navBtn ${catagory[i]}" onclick="listProduct('${catagory[i]}');" id="all">${catagory[i]}</button>
+        `;
+    }
 
-    
-    let products = [
-        {
-            id : 12345,
-            catagory : 'shirt',
-            name : 'Print Shirt 01',
-            price : '399',
-            description : 'Summer Colour Shirt',
-            varient : [
-                {
-                    display : 'show',
-                    src : 'a1.jpg',
-                    colour : 'Green',
-                    icon : 'fa-solid fa-heart',
-                },
-                {
-                    display : 'show',
-                    src : 'a2.jpg',
-                    colour : 'Red',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'hide',
-                    src : 'a3.jpg',
-                    colour : 'White',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'hide',
-                    src : 'a4.jpg',
-                    colour : 'Light Green',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'show',
-                    src : 'a5.jpg',
-                    colour : 'Brown',
-                    icon : 'fa-solid fa-heart',
-                },
-                {
-                    display : 'hide',
-                    src : 'a6.jpg',
-                    colour : 'Pink',
-                    icon : 'fa-solid fa-heart',
-                }
-            ]
-        },
-        {
-            id : 12346,
-            catagory : 'shirt',
-            name : 'Print Shirt 02',
-            price : '300',
-            description : 'Summer Shirt 2',
-            varient : [
-                {
-                    display : 'show',
-                    src : 'b1.jpg',
-                    colour : 'White',
-                    icon : 'fa-solid fa-heart',
-                }
-            ]
-        },
-        {
-            id : 12347,
-            catagory : 'shirt',
-            name : 'Print Shirt 03',
-            price : '350',
-            description : 'Summer Shirt 3',
-            varient : [
-                {
-                    display : 'show',
-                    src : 'c1.jpg',
-                    colour : 'Black White',
-                    icon : 'fa-regular fa-heart',
-                }
-            ]
-        },
-        {
-            id : 12348,
-            catagory : 'shirt',
-            name : 'Print Shirt 04',
-            price : '380',
-            description : 'Summer Shirt 4',
-            varient : [
-                {
-                    display : 'show',
-                    src : 'd1.jpg',
-                    colour : 'Light Brown',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'hide',
-                    src : 'd2.jpg',
-                    colour : 'White',
-                    icon : 'fa-regular fa-heart',
-                }
-            ]
-        },
-        {
-            id : 12349,
-            catagory : 'shirt',
-            name : 'Print Shirt 05',
-            price : '299',
-            description : 'Summer Shirt 5',
-            varient : [
-                {
-                    display : 'show',
-                    src : 'e1.jpg',
-                    colour : 'Dark Blue',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'show',
-                    src : 'e2.jpg',
-                    colour : 'Black',
-                    icon : 'fa-regular fa-heart',
-                }
-            ]
-        },
-        {
-            id : 12350,
-            catagory : 'shirt',
-            name : 'Figure Shirt',
-            price : '450',
-            description : 'Best for formal suit combination',
-            varient : [
-                {
-                    display : 'hide',
-                    src : 'f1.jpg',
-                    colour : 'Red',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'hide',
-                    src : 'f2.jpg',
-                    colour : 'Clay',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'hide',
-                    src : 'f3.jpg',
-                    colour : 'Green',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'show',
-                    src : 'f4.jpg',
-                    colour : 'Navy Green',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'hide',
-                    src : 'f5.jpg',
-                    colour : 'Sky Blue',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'show',
-                    src : 'f6.jpg',
-                    colour : 'White',
-                    icon : 'fa-regular fa-heart',
-                }
-            ]
-        },
-        {
-            id : 12351,
-            catagory : 'shirt',
-            name : 'Man Shirt',
-            price : '400',
-            description : 'Casual use for men',
-            varient : [
-                {
-                    display : 'hide',
-                    src : 'g1.jpg',
-                    colour : 'Black White',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'show',
-                    src : 'g2.jpg',
-                    colour : 'Pink',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'hide',
-                    src : 'g3.jpg',
-                    colour : 'Yellow',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'hide',
-                    src : 'g4.jpg',
-                    colour : 'Purple',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'hide',
-                    src : 'g5.jpg',
-                    colour : 'Sky Blue',
-                    icon : 'fa-regular fa-heart',
-                },
-            ]
-        },
+    // display the products by selecting the catagories from nav
+    listProduct('All');
+    function listProduct(selectedCatagory) {
+        // css :focus for nav btn part
+        for (let i=0; i<catagory.length; i++) {
+            document.querySelector(`.${catagory[i]}`).classList.remove("navScrollXButtonFocus");
+        }
+        document.querySelector(`.${selectedCatagory}`).classList.add("navScrollXButtonFocus");
 
-        {
-            id : 12352,
-            catagory : 'pant',
-            name : 'Jeans',
-            price : '899',
-            description : 'Good quality',
-            varient : [
-                {
-                    display : 'show',
-                    src : 'p1.jpeg',
-                    colour : 'Light Gray',
-                    icon : 'fa-regular fa-heart',
-                },
-            ]
-        },
-        {
-            id : 12353,
-            catagory : 'pant',
-            name : 'Men Tapered Fit',
-            price : '699',
-            description : 'Good attractive pant',
-            varient : [
-                {
-                    display : 'hide',
-                    src : 'q1.jpeg',
-                    colour : 'Blue',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'show',
-                    src : 'q2.jpeg',
-                    colour : 'Purple',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'show',
-                    src : 'q3.jpeg',
-                    colour : 'Light Blue',
-                    icon : 'fa-regular fa-heart',
-                },
-            ]
-        },
-        {
-            id : 12354,
-            catagory : 'pant',
-            name : 'Cargo Pant',
-            price : '800',
-            description : 'New trending',
-            varient : [
-                {
-                    display : 'show',
-                    src : 'r1.jpeg',
-                    colour : 'Dark Black',
-                    icon : 'fa-regular fa-heart',
-                },
-            ]
-        },
-        {
-            id : 12355,
-            catagory : 'pant',
-            name : 'Large Jeans',
-            price : '900',
-            description : 'Young styling dress',
-            varient : [
-                {
-                    display : 'hide',
-                    src : 's1.jpeg',
-                    colour : 'Sky Blue',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'show',
-                    src : 's2.jpeg',
-                    colour : 'Dark Blue',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'hide',
-                    src : 's3.jpeg',
-                    colour : 'Black',
-                    icon : 'fa-regular fa-heart',
-                },
-            ]
-        },
-        {
-            id : 12355,
-            catagory : 'pant',
-            name : 'Korean style jeans',
-            price : '1200',
-            description : 'Good quality products',
-            varient : [
-                {
-                    display : 'show',
-                    src : 't1.jpeg',
-                    colour : 'Light Gray',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'hide',
-                    src : 't2.jpeg',
-                    colour : 'Blue',
-                    icon : 'fa-regular fa-heart',
-                },
-                {
-                    display : 'show',
-                    src : 't3.jpeg',
-                    colour : 'Black',
-                    icon : 'fa-regular fa-heart',
-                },
-            ]
-        },
-    ];
-
-    listProduct('all');
-    function listProduct(catagory) {
+        // displaying part
         let productContainer = document.getElementById('productContainer');
         productContainer.innerHTML = '';
 
         for (let x=0; x<products.length; x++) {
-            if (products[x].catagory == catagory) {
+            if (products[x].catagory == selectedCatagory) {
                 let varient = products[x].varient;
                 for (let i=0; i<varient.length; i++) {
                     let row = `
@@ -551,22 +129,22 @@
                                 <p class="priceTag">₹${products[x].price}/-</p>
                             </div>
                         </div>
-                    `;
-
-                    if (varient[i].display == 'show') {
-                        productContainer.innerHTML += row;
-                    };
+                        `;
+                        if (varient[i].display == 'show') {
+                            productContainer.innerHTML += row;
+                        };
                 }; 
             }
         }
-        if (catagory == 'all') {
+        if (selectedCatagory == 'All') {
+            
             for (let x=0; x<products.length; x++) {
                 let varient = products[x].varient;
                 for (let i=0; i<varient.length; i++) {
                     let row = `
                         <div class="product">
                             <div class="likeIconDiv">
-                                <i class="${varient[i].icon}"></i>
+                                <i onclick="liked('${varient[i].icon}')" class="${varient[i].icon}"></i>
                             </div>
                             <div class="productImgContainer">
                                 <img src="image/${varient[i].src}" alt="">
@@ -577,16 +155,20 @@
                             </div>
                         </div>
                     `;
-
                     if (varient[i].display == 'show') {
                         productContainer.innerHTML += row;
                     };
                 }; 
             }
         }
-        
     }
 
+    function liked(icon) {
+        if (icon == 'fa-regular fa-heart') {
+            
+        }
+    }
+    // push data to localStorage and redirect to other page
     function localStore(x, i) {
         localStorage.clear();
         localStorage.setItem('current', JSON.stringify(products[x]));
@@ -594,6 +176,14 @@
         
         window.location.href='check-product.html';
     }
-    
+    clickme('off');
+    function clickme(onOff) {
+        if (onOff == 'on') {
+            document.getElementById('aside').style.removeProperty("display");
+        }
+        else if (onOff == 'off') {
+            document.getElementById('aside').style.display = "none";
+        }
+    }
 </script>
 </html>
